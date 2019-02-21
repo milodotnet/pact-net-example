@@ -48,10 +48,10 @@ namespace PeopleStore.Pacts
                     },
                     Body = new
                     {
-                        name = "James",
-                        surname= "Bond",
+                        name = Match.Type("James"),
+                        surname= Match.Type("Bond"),
                         dateOfBirth= Match.Regex("1968-03-02T00:00:00Z", validISO8601Date) , 
-                        age = 50
+                        age = Match.Type(50),
                     }
                 });
 

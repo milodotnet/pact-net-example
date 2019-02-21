@@ -24,7 +24,7 @@ namespace PeopleStoreApi.Pact
             {
                 {
                     "Customer '007' exists",
-                    service => service.Add(new Customer("James", "Bond", new DateTime(1968,03,02),50))
+                    service => service.Add(new Customer("Roger", "Moore", new DateTime(1968,03,02),80))
                 },
             };
         }
