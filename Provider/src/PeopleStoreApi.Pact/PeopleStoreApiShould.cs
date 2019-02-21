@@ -38,7 +38,9 @@ namespace PeopleStoreApi.Pact
                 Outputters = new List<IOutput>
                 {
                     new XUnitOutput(_output)
-                }                                
+                }  ,
+                ProviderVersion = "1.0.0", //NOTE: This is required for this feature to work
+                PublishVerificationResults = !string.IsNullOrEmpty("1.0.0")
             };
             IPactVerifier pactVerifier = new PactVerifier(pactVerifierConfig);
             
@@ -46,7 +48,7 @@ namespace PeopleStoreApi.Pact
                 .ProviderState($"{baseAddress}/provider-states")
                 .ServiceProvider("PeopleStoreApi", baseAddress)
                 .HonoursPactWith("CustomerFace Frontend")
-                .PactUri($"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}Consumer{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}PeopleStore.Pacts{Path.DirectorySeparatorChar}pacts{Path.DirectorySeparatorChar}customerface_frontend-peoplestore_api.json")
+                .PactUri($"http://localhost/pacts/provider/PeopleStore%20Api/consumer/CustomerFace%20FrontEnd/latest")
                 .Verify();
             await webHost.StopAsync();
 

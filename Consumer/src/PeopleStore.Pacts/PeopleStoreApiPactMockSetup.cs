@@ -32,6 +32,9 @@ namespace PeopleStore.Pacts
         public void Dispose()
         {
             PactBuilder.Build();
+
+            var pactPublisher = new PactPublisher("http://localhost");
+            pactPublisher.PublishToBroker("..\\..\\..\\pacts\\customerface_frontend-peoplestore_api.json","1.0.0", new[] { "master" });
         }
     }
 }

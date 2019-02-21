@@ -4,6 +4,7 @@ using System.Net.Http;
 using Xunit;
 using System.Threading.Tasks;
 using FluentAssertions;
+using PactNet;
 using PactNet.Matchers;
 using PactNet.Mocks.MockHttpService;
 using PactNet.Mocks.MockHttpService.Models;
