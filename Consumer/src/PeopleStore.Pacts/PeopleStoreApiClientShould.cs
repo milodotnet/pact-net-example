@@ -4,6 +4,7 @@ using System.Net.Http;
 using Xunit;
 using System.Threading.Tasks;
 using FluentAssertions;
+using PactNet.Matchers;
 using PactNet.Mocks.MockHttpService;
 using PactNet.Mocks.MockHttpService.Models;
 using PeopleStore.ApiClient;
@@ -26,6 +27,7 @@ namespace PeopleStore.Pacts
         [Fact]
         public async Task GetACustomersDetails()
         {
+            var validISO8601Date = @"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|0[1-9]|[1-2][0-9])T(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[0-1][0-9]):[0-5][0-9])?$";
             _mockPeopleStore.Given("Customer '007' exists")
                 .UponReceiving("a request to retrieve customer '007'")
                 .With(new ProviderServiceRequest
@@ -48,7 +50,7 @@ namespace PeopleStore.Pacts
                     {
                         name = "James",
                         surname= "Bond",
-                        dateOfBirth= "1968-03-02T00:00:00",
+                        dateOfBirth= Match.Regex("1968-03-02T00:00:00Z", validISO8601Date) , 
                         age = 50
                     }
                 });
