@@ -21,7 +21,7 @@ namespace PeopleStoreApi.Pact
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseMiddleware<ProviderStateMiddleware>();
+            app.UseMiddleware<PeopleStoreProviderStateMiddleware>();
             _apiStartup.Configure(app, env);
             
         }
