@@ -14,13 +14,13 @@ namespace SpyMaster.ApiClient
             _client = httpClient;
         }
 
-        public async Task<CustomerDetails> GetCustomerAsync(string customerId)
+        public async Task<AgentDetails> GetAgentAsync(string customerId)
         {
-            var request =new HttpRequestMessage(HttpMethod.Get, $"/customers/{customerId}");
+            var request =new HttpRequestMessage(HttpMethod.Get, $"/agents/{customerId}");
             request.Headers.Add("Accept",  "application/json" );
             var response = await _client.SendAsync(request);
             var responseJson = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<CustomerDetails>(responseJson);
+            return JsonConvert.DeserializeObject<AgentDetails>(responseJson);
         }
     }
 }

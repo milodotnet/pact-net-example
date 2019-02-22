@@ -23,7 +23,7 @@ namespace SpyMaster.Pacts
                     LogDir = $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}logs{Path.DirectorySeparatorChar}",
                     PactDir = $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}pacts{Path.DirectorySeparatorChar}"
                 })
-                .ServiceConsumer("CustomerFace FrontEnd")
+                .ServiceConsumer("SpyLens FrontEnd")
                 .HasPactWith("SpyMaster Api");
 
             MockSpyMasterService = PactBuilder.MockService(MockServerPort, false, IPAddress.Any);
@@ -34,7 +34,7 @@ namespace SpyMaster.Pacts
             PactBuilder.Build();
 
             var pactPublisher = new PactPublisher("http://localhost");
-            pactPublisher.PublishToBroker("..\\..\\..\\pacts\\customerface_frontend-SpyMaster_api.json","1.0.0", new[] { "master" });
+            pactPublisher.PublishToBroker("..\\..\\..\\pacts\\SpyLens_frontend-SpyMaster_api.json","1.0.0", new[] { "master" });
         }
     }
 }

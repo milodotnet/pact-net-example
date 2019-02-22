@@ -26,15 +26,15 @@ namespace SpyMaster.Pacts
         }
 
         [Fact]
-        public async Task GetACustomersDetails()
+        public async Task GetAgentDetails()
         {
             
-            _mockSpyMaster.Given("Customer '007' exists")
-                .UponReceiving("a request to retrieve customer '007'")
+            _mockSpyMaster.Given("An agent '007' exists")
+                .UponReceiving("a request to retrieve agent '007'")
                 .With(new ProviderServiceRequest
                 {
                     Method = HttpVerb.Get,
-                    Path = "/customers/007",
+                    Path = "/agents/007",
                     Headers = new Dictionary<string, object>
                     {
                         { "Accept", "application/json" },
@@ -57,9 +57,9 @@ namespace SpyMaster.Pacts
                 });
 
             var httpClient = new HttpClient {BaseAddress = new Uri(_mockSpyMasterBaseUri)};
-            var consumer = new SpyMasterApiClient(httpClient);
+            var spyMasterApiClient = new SpyMasterApiClient(httpClient);
 
-            var expectedCustomerDetails = new CustomerDetails
+            var expectedAgentDetails = new AgentDetails
             {
                 Name = "James",
                 Surname = "Bond",
@@ -67,9 +67,9 @@ namespace SpyMaster.Pacts
                 Age = 50
             };
 
-            var result = await consumer.GetCustomerAsync("007");
+            var result = await spyMasterApiClient.GetAgentAsync("007");
           
-            result.Should().BeEquivalentTo(expectedCustomerDetails);
+            result.Should().BeEquivalentTo(expectedAgentDetails);
             _mockSpyMaster.VerifyInteractions();
         }
     }
