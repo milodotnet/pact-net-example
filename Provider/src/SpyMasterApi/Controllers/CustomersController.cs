@@ -5,9 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PeopleStoreApi.Services;
+using SpyMasterApi.Services;
 
-namespace PeopleStoreApi.Controllers
+namespace SpyMasterApi.Controllers
 {
     [Route("[controller]")]
     [ApiController]

@@ -1,4 +1,4 @@
-namespace PeopleStoreApi.Pact
+namespace SpyMasterApi.Pact
 {
     public class ProviderState
     {

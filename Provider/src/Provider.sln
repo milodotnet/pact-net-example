@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleStoreApi", "PeopleStoreApi\PeopleStoreApi.csproj", "{141C04C1-8C38-4902-AB79-74C99A371CC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpyMasterApi", "SpyMasterApi\SpyMasterApi.csproj", "{141C04C1-8C38-4902-AB79-74C99A371CC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleStoreApi.Pact", "PeopleStoreApi.Pact\PeopleStoreApi.Pact.csproj", "{8F360A6B-D67F-49FB-82E3-6ABB992C6C29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpyMasterApi.Pact", "SpyMasterApi.Pact\SpyMasterApi.Pact.csproj", "{8F360A6B-D67F-49FB-82E3-6ABB992C6C29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
 using System;
 
-namespace PeopleStore.ApiClient
+namespace SpyMaster.ApiClient
 {
     public class CustomerDetails
     {

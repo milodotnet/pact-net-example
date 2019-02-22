@@ -8,28 +8,28 @@ using PactNet;
 using PactNet.Matchers;
 using PactNet.Mocks.MockHttpService;
 using PactNet.Mocks.MockHttpService.Models;
-using PeopleStore.ApiClient;
+using SpyMaster.ApiClient;
 
-namespace PeopleStore.Pacts
+namespace SpyMaster.Pacts
 {
-    public class PeopleStoreApiClientShould : IClassFixture<PeopleStoreApiPactMockSetup>
+    public class SpyMasterApiClientShould : IClassFixture<SpyMasterApiPactMockSetup>
     {
 
-        private readonly IMockProviderService _mockPeopleStore;
-        private readonly string _mockPeopleStoreBaseUri;
+        private readonly IMockProviderService _mockSpyMaster;
+        private readonly string _mockSpyMasterBaseUri;
 
-        public PeopleStoreApiClientShould(PeopleStoreApiPactMockSetup mockServerSetup)
+        public SpyMasterApiClientShould(SpyMasterApiPactMockSetup mockServerSetup)
         {
-            _mockPeopleStore = mockServerSetup.MockPeopleStoreService;
-            _mockPeopleStoreBaseUri = mockServerSetup.MockProviderServiceBaseUri;
-            _mockPeopleStore.ClearInteractions();
+            _mockSpyMaster = mockServerSetup.MockSpyMasterService;
+            _mockSpyMasterBaseUri = mockServerSetup.MockProviderServiceBaseUri;
+            _mockSpyMaster.ClearInteractions();
         }
 
         [Fact]
         public async Task GetACustomersDetails()
         {
-            var validISO8601Date = @"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|0[1-9]|[1-2][0-9])T(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[0-1][0-9]):[0-5][0-9])?$";
-            _mockPeopleStore.Given("Customer '007' exists")
+            
+            _mockSpyMaster.Given("Customer '007' exists")
                 .UponReceiving("a request to retrieve customer '007'")
                 .With(new ProviderServiceRequest
                 {
@@ -51,13 +51,13 @@ namespace PeopleStore.Pacts
                     {
                         name = Match.Type("James"),
                         surname= Match.Type("Bond"),
-                        dateOfBirth= Match.Regex("1968-03-02T00:00:00Z", validISO8601Date) , 
+                        dateOfBirth= Match.Regex("1968-03-02T00:00:00Z", DateFormats.ValidIso8601Date) , 
                         age = Match.Type(50),
                     }
                 });
 
-            var httpClient = new HttpClient {BaseAddress = new Uri(_mockPeopleStoreBaseUri)};
-            var consumer = new PeopleStoreApiClient(httpClient);
+            var httpClient = new HttpClient {BaseAddress = new Uri(_mockSpyMasterBaseUri)};
+            var consumer = new SpyMasterApiClient(httpClient);
 
             var expectedCustomerDetails = new CustomerDetails
             {
@@ -68,10 +68,9 @@ namespace PeopleStore.Pacts
             };
 
             var result = await consumer.GetCustomerAsync("007");
-
           
             result.Should().BeEquivalentTo(expectedCustomerDetails);
-            _mockPeopleStore.VerifyInteractions();
+            _mockSpyMaster.VerifyInteractions();
         }
     }
 }

@@ -1,7 +1,7 @@
 using PactNet.Infrastructure.Outputters;
 using Xunit.Abstractions;
 
-namespace PeopleStoreApi.Pact
+namespace SpyMasterApi.Pact
 {
     public class XUnitOutput : IOutput
     {

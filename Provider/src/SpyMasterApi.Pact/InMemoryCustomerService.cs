@@ -1,6 +1,6 @@
-using PeopleStoreApi.Services;
+using SpyMasterApi.Services;
 
-namespace PeopleStoreApi.Pact
+namespace SpyMasterApi.Pact
 {
     public class InMemoryCustomerService : ICustomerService
     {

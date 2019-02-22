@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PeopleStoreApi.Services;
+using SpyMasterApi.Services;
 
-namespace PeopleStoreApi.Pact
+namespace SpyMasterApi.Pact
 {
     public class TestStartup
     {
@@ -21,7 +21,7 @@ namespace PeopleStoreApi.Pact
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseMiddleware<PeopleStoreProviderStateMiddleware>();
+            app.UseMiddleware<SpyMasterProviderStateMiddleware>();
             _apiStartup.Configure(app, env);
             
         }

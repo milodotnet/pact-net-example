@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "PeopleStoreApi.Pact": {
+    "SpyMasterApi.Pact": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

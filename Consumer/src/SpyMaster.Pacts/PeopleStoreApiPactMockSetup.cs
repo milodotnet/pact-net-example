@@ -4,18 +4,18 @@ using PactNet;
 using PactNet.Mocks.MockHttpService;
 using PactNet.Models;
 
-namespace PeopleStore.Pacts
+namespace SpyMaster.Pacts
 {
-    public class PeopleStoreApiPactMockSetup : IDisposable
+    public class SpyMasterApiPactMockSetup : IDisposable
     {
         
-        public IMockProviderService MockPeopleStoreService { get; }
+        public IMockProviderService MockSpyMasterService { get; }
 
         private static int MockServerPort => 9222;
         public string MockProviderServiceBaseUri => $"http://localhost:{MockServerPort}";
         private IPactBuilder PactBuilder { get; }
 
-        public PeopleStoreApiPactMockSetup()
+        public SpyMasterApiPactMockSetup()
         {
             PactBuilder = new PactBuilder(new PactConfig
                 {
@@ -24,9 +24,9 @@ namespace PeopleStore.Pacts
                     PactDir = $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}pacts{Path.DirectorySeparatorChar}"
                 })
                 .ServiceConsumer("CustomerFace FrontEnd")
-                .HasPactWith("PeopleStore Api");
+                .HasPactWith("SpyMaster Api");
 
-            MockPeopleStoreService = PactBuilder.MockService(MockServerPort, false, IPAddress.Any);
+            MockSpyMasterService = PactBuilder.MockService(MockServerPort, false, IPAddress.Any);
         }
 
         public void Dispose()
@@ -34,7 +34,7 @@ namespace PeopleStore.Pacts
             PactBuilder.Build();
 
             var pactPublisher = new PactPublisher("http://localhost");
-            pactPublisher.PublishToBroker("..\\..\\..\\pacts\\customerface_frontend-peoplestore_api.json","1.0.0", new[] { "master" });
+            pactPublisher.PublishToBroker("..\\..\\..\\pacts\\customerface_frontend-SpyMaster_api.json","1.0.0", new[] { "master" });
         }
     }
 }

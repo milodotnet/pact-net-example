@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PeopleStoreApi.Services
+namespace SpyMasterApi.Services
 {
     public interface ICustomerService
     {

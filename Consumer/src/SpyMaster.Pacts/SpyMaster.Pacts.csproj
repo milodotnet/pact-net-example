@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -7,16 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="2.2.0" />  
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="PactNet.Windows" Version="2.4.5" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    <PackageReference Include="PactNet.Windows" Version="2.4.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PeopleStoreApi\PeopleStoreApi.csproj" />
+    <ProjectReference Include="..\SpyMaster.ApiClient\SpyMaster.ApiClient.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,17 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using PeopleStoreApi.Services;
+using SpyMasterApi.Services;
 
-namespace PeopleStoreApi.Pact
+namespace SpyMasterApi.Pact
 {
-    public class PeopleStoreProviderStateMiddleware
+    public class SpyMasterProviderStateMiddleware
     {
         private readonly RequestDelegate _next;
         private const string ConsumerName = "CustomerFace FrontEnd";
         private readonly IDictionary<string, Action<InMemoryCustomerService>> _providerStates;
 
-        public PeopleStoreProviderStateMiddleware(RequestDelegate next)
+        public SpyMasterProviderStateMiddleware(RequestDelegate next)
         {
             _next = next;
             _providerStates = new Dictionary<string, Action<InMemoryCustomerService>>

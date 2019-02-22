@@ -3,13 +3,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PeopleStore.ApiClient
+namespace SpyMaster.ApiClient
 {
-    public class PeopleStoreApiClient
+    public class SpyMasterApiClient
     {
         private readonly HttpClient _client;
 
-        public PeopleStoreApiClient(HttpClient httpClient)
+        public SpyMasterApiClient(HttpClient httpClient)
         {
             _client = httpClient;
         }

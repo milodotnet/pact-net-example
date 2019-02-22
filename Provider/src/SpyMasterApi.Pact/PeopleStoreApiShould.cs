@@ -10,13 +10,13 @@ using PactNet.Infrastructure.Outputters;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace PeopleStoreApi.Pact
+namespace SpyMasterApi.Pact
 {
-    public class PeopleStoreApiShould
+    public class SpyMasterApiShould
     {
         private readonly ITestOutputHelper _output;
 
-        public PeopleStoreApiShould(ITestOutputHelper output)
+        public SpyMasterApiShould(ITestOutputHelper output)
         {
             _output = output;
         }
@@ -39,16 +39,16 @@ namespace PeopleStoreApi.Pact
                 {
                     new XUnitOutput(_output)
                 }  ,
-                ProviderVersion = "1.0.0", //NOTE: This is required for this feature to work
+                ProviderVersion = "1.0.0",
                 PublishVerificationResults = !string.IsNullOrEmpty("1.0.0")
             };
             IPactVerifier pactVerifier = new PactVerifier(pactVerifierConfig);
             
             pactVerifier                    
                 .ProviderState($"{baseAddress}/provider-states")
-                .ServiceProvider("PeopleStoreApi", baseAddress)
+                .ServiceProvider("SpyMasterApi", baseAddress)
                 .HonoursPactWith("CustomerFace Frontend")
-                .PactUri($"http://localhost/pacts/provider/PeopleStore%20Api/consumer/CustomerFace%20FrontEnd/latest")
+                .PactUri($"http://localhost/pacts/provider/SpyMaster%20Api/consumer/CustomerFace%20FrontEnd/latest")
                 .Verify();
             await webHost.StopAsync();
 
