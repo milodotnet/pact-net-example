@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Testing;
 using PactNet;
 using PactNet.Infrastructure.Outputters;
 using Xunit;
@@ -21,7 +18,7 @@ namespace SpyMasterApi.Pact
             _output = output;
         }
         [Fact]
-        public async Task HonourPactWithCustomerFace()
+        public async Task HonourPactWithSpyLens()
         {
             var baseAddress = $"http://localhost:8088";
             var webHost = WebHost
@@ -47,8 +44,8 @@ namespace SpyMasterApi.Pact
             pactVerifier                    
                 .ProviderState($"{baseAddress}/provider-states")
                 .ServiceProvider("SpyMasterApi", baseAddress)
-                .HonoursPactWith("CustomerFace Frontend")
-                .PactUri($"http://localhost/pacts/provider/SpyMaster%20Api/consumer/CustomerFace%20FrontEnd/latest")
+                .HonoursPactWith("SpyLens Frontend")
+                .PactUri($"http://localhost/pacts/provider/SpyMaster%20Api/consumer/SpyLens%20FrontEnd/latest")
                 .Verify();
             await webHost.StopAsync();
 

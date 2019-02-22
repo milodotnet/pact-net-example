@@ -11,21 +11,21 @@ namespace SpyMasterApi.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class AgentsController : ControllerBase
     {
-        private readonly ICustomerService _service;
+        private readonly IAgentsService _agentService;
 
-        public CustomersController(ICustomerService service)
+        public AgentsController(IAgentsService agentService)
         {
-            _service = service;
+            _agentService = agentService;
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            var customer = _service.Get(id);
+            var agent = _agentService.Get(id);
 
-            return new ObjectResult(customer)
+            return new ObjectResult(agent)
             {
                 StatusCode = (int)HttpStatusCode.OK
             };

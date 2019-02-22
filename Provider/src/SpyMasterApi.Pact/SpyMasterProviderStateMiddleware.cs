@@ -14,21 +14,21 @@ namespace SpyMasterApi.Pact
     public class SpyMasterProviderStateMiddleware
     {
         private readonly RequestDelegate _next;
-        private const string ConsumerName = "CustomerFace FrontEnd";
-        private readonly IDictionary<string, Action<InMemoryCustomerService>> _providerStates;
+        private const string ConsumerName = "SpyLens FrontEnd";
+        private readonly IDictionary<string, Action<InMemoryAgentsService>> _providerStates;
 
         public SpyMasterProviderStateMiddleware(RequestDelegate next)
         {
             _next = next;
-            _providerStates = new Dictionary<string, Action<InMemoryCustomerService>>
+            _providerStates = new Dictionary<string, Action<InMemoryAgentsService>>
             {
                 {
-                    "Customer '007' exists",
-                    service => service.Add(new Customer("Roger", "Moore", new DateTime(1968,03,02),80))
+                    "An agent '007' exists",
+                    service => service.Add(new AgentDetails("Roger", "Moore", new DateTime(1968,03,02),80))
                 },
             };
         }
-        public async Task InvokeAsync(HttpContext context, ICustomerService customerService)
+        public async Task InvokeAsync(HttpContext context, IAgentsService agentsService)
         {
             if (context.Request.Path.Value == "/provider-states")
             {
@@ -40,7 +40,7 @@ namespace SpyMasterApi.Pact
                         
                     if (providerState != null && providerState.For(ConsumerName))
                     {
-                        _providerStates[providerState.State].Invoke(customerService as InMemoryCustomerService);
+                        _providerStates[providerState.State].Invoke(agentsService as InMemoryAgentsService);
                     }
                     await context.Response.WriteAsync(string.Empty);
                 }
