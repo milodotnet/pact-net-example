@@ -15,18 +15,12 @@ namespace SpyMasterApi.Pact
     {
         private readonly RequestDelegate _next;
         private const string ConsumerName = "SpyLens FrontEnd";
-        private readonly IDictionary<string, Action<InMemoryAgentsService>> _providerStates;
+        private readonly IDictionary<ProviderState, Action<InMemoryAgentsService>> _providerStatesSeeder;
 
-        public SpyMasterProviderStateMiddleware(RequestDelegate next)
+        public SpyMasterProviderStateMiddleware(RequestDelegate next, IDictionary<ProviderState, Action<InMemoryAgentsService>> providerStatesSeeder)
         {
             _next = next;
-            _providerStates = new Dictionary<string, Action<InMemoryAgentsService>>
-            {
-                {
-                    "An agent '007' exists",
-                    service => service.Add(new AgentDetails("Roger", "Moore", new DateTime(1968,03,02),80))
-                },
-            };
+            _providerStatesSeeder = providerStatesSeeder;
         }
         public async Task InvokeAsync(HttpContext context, IAgentsService agentsService)
         {
@@ -38,9 +32,9 @@ namespace SpyMasterApi.Pact
                 {
                     var providerState = ReadProviderStateFromContext(context);
                         
-                    if (providerState != null && providerState.For(ConsumerName))
+                    if (_providerStatesSeeder.ContainsKey(providerState))
                     {
-                        _providerStates[providerState.State].Invoke(agentsService as InMemoryAgentsService);
+                        _providerStatesSeeder[providerState].Invoke(agentsService as InMemoryAgentsService);
                     }
                     await context.Response.WriteAsync(string.Empty);
                 }
