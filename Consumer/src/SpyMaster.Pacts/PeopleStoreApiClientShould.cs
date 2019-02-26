@@ -49,8 +49,8 @@ namespace SpyMaster.Pacts
                     },
                     Body = new
                     {
-                        name = Match.Type("James"),
-                        surname= Match.Type("Bond"),
+                        name = Match.Type("Daniel"),
+                        surname= Match.Type("Craig"),
                         dateOfBirth= Match.Regex("1968-03-02T00:00:00Z", DateFormats.ValidIso8601Date) , 
                         age = Match.Type(50),
                     }
