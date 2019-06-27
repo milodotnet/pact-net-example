@@ -1,15 +1,14 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using SpyMasterApi.Services;
 
 namespace SpyMasterApi.Pact
 {
-    public abstract class ProviderStateMiddleWare<TDataProvider>
+    public abstract class ProviderStateMiddleWareInheritance<TDataProvider>
     {
         public const string ProviderStatePath = "/provider-states";
         private readonly RequestDelegate _next;
 
-        protected ProviderStateMiddleWare(RequestDelegate next)
+        protected ProviderStateMiddleWareInheritance(RequestDelegate next)
         {
             _next = next;
         }
@@ -32,24 +31,6 @@ namespace SpyMasterApi.Pact
         private static bool IsProviderStateRequest(HttpContext context)
         {
             return context.Request.Path.Value == ProviderStatePath;
-        }
-
-
-    }
-    public class SpyMasterProviderStateMiddleware : ProviderStateMiddleWare<IAgentsService>
-    {
-        private readonly SpyMasterInMemoryProviderStateSeeder _providerStateSeeder;
-
-        public SpyMasterProviderStateMiddleware(RequestDelegate next, SpyMasterInMemoryProviderStateSeeder providerStateSeeder) : base(next)
-        {
-            _providerStateSeeder = providerStateSeeder;
-        }
-
-        protected override void SetupMatchingProviderState(IAgentsService agentsService, HttpRequest request)
-        {
-            if (!request.HasBody()) return;
-            var providerState = request.GetBodyAsync<ProviderState>();
-             _providerStateSeeder.SetupProviderState(providerState, agentsService as InMemoryAgentsService);
         }
     }
 }

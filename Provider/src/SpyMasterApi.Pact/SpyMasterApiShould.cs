@@ -42,7 +42,7 @@ namespace SpyMasterApi.Pact
             IPactVerifier pactVerifier = new PactVerifier(pactVerifierConfig);
             
             pactVerifier                    
-                .ProviderState($"{baseAddress}/provider-states")
+                .ProviderState($"{baseAddress}/{SpyMasterProviderStateMiddleware.ProviderStatePath}")
                 .ServiceProvider("SpyMasterApi", baseAddress)
                 .HonoursPactWith("SpyLens Frontend")
                 .PactUri($"http://localhost/pacts/provider/SpyMaster%20Api/consumer/SpyLens%20FrontEnd/latest")
