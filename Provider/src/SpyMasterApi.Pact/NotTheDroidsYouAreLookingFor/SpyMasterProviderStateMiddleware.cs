@@ -31,7 +31,7 @@ namespace SpyMasterApi.Pact
 
         private static bool IsProviderStateRequest(HttpContext context)
         {
-            return context.Request.Path.Value == ProviderStatePath;
+            return context.Request.Path.Value.EndsWith(ProviderStatePath);
         }
 
 

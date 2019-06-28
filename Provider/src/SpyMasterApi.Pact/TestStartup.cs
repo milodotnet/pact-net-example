@@ -24,11 +24,8 @@ namespace SpyMasterApi.Pact
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             var providerStateSeeder = ConfigureProviderStates();
-           // app.UseMiddleware<SpyMasterProviderStateMiddleware>(providerStateSeeder);
-           var setup = new SpyMasterProviderStateSetup(providerStateSeeder);
-           app.UseMiddleware<ProviderStateMiddleWareCompositional<IAgentsService>>(setup);
+            app.UseMiddleware<SpyMasterProviderStateMiddleware>(providerStateSeeder);
             _apiStartup.Configure(app, env);
-            
         }
 
         private static SpyMasterInMemoryProviderStateSeeder ConfigureProviderStates()

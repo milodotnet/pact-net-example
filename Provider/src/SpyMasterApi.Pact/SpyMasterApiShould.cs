@@ -45,7 +45,8 @@ namespace SpyMasterApi.Pact
                 .ProviderState($"{baseAddress}/{SpyMasterProviderStateMiddleware.ProviderStatePath}")
                 .ServiceProvider("SpyMasterApi", baseAddress)
                 .HonoursPactWith("SpyLens Frontend")
-                .PactUri($"http://localhost/pacts/provider/SpyMaster%20Api/consumer/SpyLens%20FrontEnd/latest")
+                //.PactUri($"http://localhost/pacts/provider/SpyMaster%20Api/consumer/SpyLens%20FrontEnd/latest")
+                .PactUri(@"c:\\git\\pacts\\spylens_frontend-spymaster_api.json")
                 .Verify();
             await webHost.StopAsync();
 
