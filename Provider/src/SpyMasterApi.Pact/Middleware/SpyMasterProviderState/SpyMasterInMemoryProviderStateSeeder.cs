@@ -2,7 +2,7 @@ namespace SpyMasterApi.Pact.Middleware.SpyMasterProviderState
 {
     using System;
     using System.Collections.Generic;
-    using SpyMasterApi.Pact.Middleware.Pact;
+    using Pact;
 
     public class SpyMasterInMemoryProviderStateSeeder
     {
@@ -13,7 +13,7 @@ namespace SpyMasterApi.Pact.Middleware.SpyMasterProviderState
             _seedingActions.Add(state, seedingAction);
         }
 
-        public void SetupProviderState(ProviderState state, InMemoryAgentsService agentsService)
+        public void MatchSeedingAction(ProviderState state, InMemoryAgentsService agentsService)
         {
             if (_seedingActions.ContainsKey(state))
             {

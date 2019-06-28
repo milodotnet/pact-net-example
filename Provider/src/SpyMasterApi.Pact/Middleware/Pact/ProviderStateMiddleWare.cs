@@ -17,7 +17,7 @@ namespace SpyMasterApi.Pact.Middleware.Pact
         {
             if (IsProviderStateRequest(context) && context.IsPost())
             {
-                SetupMatchingProviderState(dataProvider, context.Request);
+                MatchProviderState(dataProvider, context.Request);
                 await context.OkResponse();
             }
             else
@@ -26,7 +26,7 @@ namespace SpyMasterApi.Pact.Middleware.Pact
             }
         }
 
-        protected abstract void SetupMatchingProviderState(TDataProvider dataProvider, HttpRequest request);
+        protected abstract void MatchProviderState(TDataProvider dataProvider, HttpRequest request);
 
         private static bool IsProviderStateRequest(HttpContext context)
         {

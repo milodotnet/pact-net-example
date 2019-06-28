@@ -1,5 +1,6 @@
 namespace SpyMasterApi.Pact.Middleware.SpyMasterProviderState
 {
+    using System;
     using HttpExtensions;
     using Microsoft.AspNetCore.Http;
     using Services;
@@ -9,16 +10,20 @@ namespace SpyMasterApi.Pact.Middleware.SpyMasterProviderState
     {
         private readonly SpyMasterInMemoryProviderStateSeeder _providerStateSeeder;
 
-        public SpyMasterProviderStateMiddleware(RequestDelegate next, SpyMasterInMemoryProviderStateSeeder providerStateSeeder) : base(next)
+        public SpyMasterProviderStateMiddleware(RequestDelegate next) : base(next)
         {
-            _providerStateSeeder = providerStateSeeder;
+            _providerStateSeeder = new SpyMasterInMemoryProviderStateSeeder();
+            _providerStateSeeder = new SpyMasterProviderStateBuilder()
+                .ForProviderState(new ProviderState("SpyLens FrontEnd", "An agent '007' exists"))
+                .SeedData(service => service.Add(new AgentDetails("Roger", "Moore", new DateTime(1968, 03, 02), 80)))
+                .Build();
         }
 
-        protected override void SetupMatchingProviderState(IAgentsService agentsService, HttpRequest request)
+        protected override void MatchProviderState(IAgentsService agentsService, HttpRequest request)
         {
             if (!request.HasBody()) return;
             var providerState = request.GetBodyAsync<ProviderState>();
-             _providerStateSeeder.SetupProviderState(providerState, agentsService as InMemoryAgentsService);
+             _providerStateSeeder.MatchSeedingAction(providerState, agentsService as InMemoryAgentsService);
         }
     }
 }
