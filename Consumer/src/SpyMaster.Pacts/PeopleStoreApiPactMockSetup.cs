@@ -33,8 +33,8 @@ namespace SpyMaster.Pacts
         {
             PactBuilder.Build();
 
-            var pactPublisher = new PactPublisher("http://localhost");
-            pactPublisher.PublishToBroker("..\\..\\..\\pacts\\SpyLens_frontend-SpyMaster_api.json","1.0.0", new[] { "master" });
+//            var pactPublisher = new PactPublisher("http://localhost");
+//            pactPublisher.PublishToBroker("..\\..\\..\\pacts\\SpyLens_frontend-SpyMaster_api.json","1.0.0", new[] { "master" });
         }
     }
 }

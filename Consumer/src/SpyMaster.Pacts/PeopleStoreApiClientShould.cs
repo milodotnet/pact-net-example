@@ -61,8 +61,8 @@ namespace SpyMaster.Pacts
 
             var expectedAgentDetails = new AgentDetails
             {
-                Name = "James",
-                Surname = "Bond",
+                Name = "Daniel",
+                Surname = "Craig",
                 DateOfBirth = new DateTime(1968, 03, 02),
                 Age = 50
             };
