@@ -1,7 +1,8 @@
-namespace SpyMasterApi.Pact.NotTheDroidsYouAreLookingFor
+namespace SpyMasterApi.Pact.Middleware.SpyMasterProviderState
 {
     using System;
     using System.Collections.Generic;
+    using SpyMasterApi.Pact.Middleware.Pact;
 
     public class SpyMasterInMemoryProviderStateSeeder
     {

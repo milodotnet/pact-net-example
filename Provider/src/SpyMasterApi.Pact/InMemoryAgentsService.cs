@@ -1,7 +1,7 @@
-using SpyMasterApi.Services;
-
 namespace SpyMasterApi.Pact
 {
+    using Services;
+
     public class InMemoryAgentsService : IAgentsService
     {
         private AgentDetails _agentDetails;

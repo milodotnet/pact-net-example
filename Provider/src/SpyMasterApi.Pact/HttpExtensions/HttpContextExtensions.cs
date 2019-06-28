@@ -1,10 +1,10 @@
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-
-namespace SpyMasterApi.Pact
+namespace SpyMasterApi.Pact.HttpExtensions
 {
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
+
     public static class HttpContextExtensions
     {
         public static async Task OkResponse(this HttpContext context)

@@ -1,4 +1,4 @@
-namespace SpyMasterApi.Pact.NotTheDroidsYouAreLookingFor
+namespace SpyMasterApi.Pact.XUnit
 {
     using PactNet.Infrastructure.Outputters;
     using Xunit.Abstractions;

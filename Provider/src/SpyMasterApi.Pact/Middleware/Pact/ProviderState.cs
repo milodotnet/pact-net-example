@@ -1,4 +1,4 @@
-namespace SpyMasterApi.Pact.NotTheDroidsYouAreLookingFor
+namespace SpyMasterApi.Pact.Middleware.Pact
 {
     public class ProviderState
     {

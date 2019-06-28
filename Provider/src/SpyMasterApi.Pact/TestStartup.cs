@@ -1,13 +1,14 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using SpyMasterApi.Services;
-
 namespace SpyMasterApi.Pact
 {
+    using System;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Services;
+    using Middleware.SpyMasterProviderState;
+    using SpyMasterApi.Pact.Middleware.Pact;
+
     public class TestStartup
     {
         private readonly Startup _apiStartup;

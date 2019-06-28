@@ -1,14 +1,16 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using PactNet;
-using PactNet.Infrastructure.Outputters;
-using Xunit;
-using Xunit.Abstractions;
-
 namespace SpyMasterApi.Pact
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore;
+    using Microsoft.AspNetCore.Hosting;
+    using PactNet;
+    using PactNet.Infrastructure.Outputters;
+    using Xunit;
+    using Xunit.Abstractions;
+    using Middleware.SpyMasterProviderState;
+    using XUnit;
+
     public class SpyMasterApiShould
     {
         private readonly ITestOutputHelper _output;
