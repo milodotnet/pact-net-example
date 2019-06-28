@@ -20,8 +20,7 @@ namespace SpyMasterApi.Pact
         public void ConfigureServices(IServiceCollection services)
         {
             _apiStartup.ConfigureServices(services);
-            services.AddSingleton<IAgentsService, InMemoryAgentsService>();
-            services.AddSingleton<SpyMasterInMemoryProviderStateSeeder, SpyMasterInMemoryProviderStateSeeder>();
+            services.AddSingleton<IAgentsService, InMemoryAgentsService>();            
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

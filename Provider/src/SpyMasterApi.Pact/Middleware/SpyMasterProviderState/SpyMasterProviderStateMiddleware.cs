@@ -4,7 +4,7 @@ namespace SpyMasterApi.Pact.Middleware.SpyMasterProviderState
     using HttpExtensions;
     using Microsoft.AspNetCore.Http;
     using Services;
-    using SpyMasterApi.Pact.Middleware.Pact;
+    using Pact;
 
     public class SpyMasterProviderStateMiddleware : ProviderStateMiddleWare<IAgentsService>
     {
@@ -12,7 +12,6 @@ namespace SpyMasterApi.Pact.Middleware.SpyMasterProviderState
 
         public SpyMasterProviderStateMiddleware(RequestDelegate next) : base(next)
         {
-            _providerStateSeeder = new SpyMasterInMemoryProviderStateSeeder();
             _providerStateSeeder = new SpyMasterProviderStateBuilder()
                 .ForProviderState(new ProviderState("SpyLens FrontEnd", "An agent '007' exists"))
                 .SeedData(service => service.Add(new AgentDetails("Roger", "Moore", new DateTime(1968, 03, 02), 80)))
