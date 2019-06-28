@@ -1,8 +1,8 @@
-using PactNet.Infrastructure.Outputters;
-using Xunit.Abstractions;
-
-namespace SpyMasterApi.Pact
+namespace SpyMasterApi.Pact.NotTheDroidsYouAreLookingFor
 {
+    using PactNet.Infrastructure.Outputters;
+    using Xunit.Abstractions;
+
     public class XUnitOutput : IOutput
     {
         private readonly ITestOutputHelper _output;

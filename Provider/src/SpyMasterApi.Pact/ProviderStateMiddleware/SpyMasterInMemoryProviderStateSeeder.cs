@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
-
-namespace SpyMasterApi.Pact
+namespace SpyMasterApi.Pact.NotTheDroidsYouAreLookingFor
 {
+    using System;
+    using System.Collections.Generic;
+
     public class SpyMasterInMemoryProviderStateSeeder
     {
         private readonly Dictionary<ProviderState, Action<InMemoryAgentsService>> _seedingActions = new Dictionary<ProviderState, Action<InMemoryAgentsService>>();

@@ -1,25 +1,24 @@
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-
-namespace SpyMasterApi.Pact
+namespace SpyMasterApi.Pact.ProviderState
 {
-    public class ProviderStateMiddleWareCompositional<TDataProvider>
+    using System.Threading.Tasks;
+    using HttpExtensions;
+    using Microsoft.AspNetCore.Http;
+
+    public abstract class ProviderStateMiddleWare<TDataProvider>
     {
         public const string ProviderStatePath = "/provider-states";
         private readonly RequestDelegate _next;
-        private readonly IProviderStateSetup<TDataProvider> _setup;
 
-        protected ProviderStateMiddleWareCompositional(RequestDelegate next, IProviderStateSetup<TDataProvider> setup)
+        protected ProviderStateMiddleWare(RequestDelegate next)
         {
             _next = next;
-            _setup = setup;
         }
 
         public async Task InvokeAsync(HttpContext context, TDataProvider dataProvider)
         {
             if (IsProviderStateRequest(context) && context.IsPost())
             {
-                _setup.SetupMatchingProviderState(dataProvider, context.Request);
+                SetupMatchingProviderState(dataProvider, context.Request);
                 await context.OkResponse();
             }
             else
@@ -28,9 +27,11 @@ namespace SpyMasterApi.Pact
             }
         }
 
+        protected abstract void SetupMatchingProviderState(TDataProvider dataProvider, HttpRequest request);
+
         private static bool IsProviderStateRequest(HttpContext context)
         {
-            return context.Request.Path.Value == ProviderStatePath;
+            return context.Request.Path.Value.EndsWith(ProviderStatePath);
         }
     }
 }
